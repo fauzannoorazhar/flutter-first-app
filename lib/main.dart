@@ -23,55 +23,71 @@ class MyApp extends StatelessWidget {
 				// is not restarted.
 				primarySwatch: Colors.blue,
                 primaryColor: Colors.white
-			),
-			home: Scaffold(
-                appBar: AppBar(title: const Text(_title)),
-                body: MyStatelessWidget(),
-            ),
+			),  
+			home: MyHomePage(title : 'Flutter Demo Home Page')
 		);
 	}
 }
 
-class MyStatelessWidget extends StatelessWidget {
-    MyStatelessWidget({Key key}) : super(key : key);
+class MyHomePage extends StatefulWidget {
+    MyHomePage({Key key, this.title}) : super(key : key);
+    final String title;
+
+    _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+    int _counterIncrement = 0;
+
+    void _incrementCounter() {
+        setState(() {
+          _counterIncrement++;
+        });
+    }
+
+    void _decrementCounter() {
+        setState(() {
+          _counterIncrement--;
+        });
+    }
 
     Widget build(BuildContext context) {
-        return Container(
-            child: Column(
-                children: <Widget>[
-                    Container(
-                        padding: EdgeInsets.all(10.0),
-                        color: Colors.greenAccent,
-                        width: MediaQuery.of(context).size.width,
-                        child: Column(
+        return Scaffold(
+            appBar: AppBar(
+                title: Text(widget.title),
+            ),
+            body: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                        Text('You have pushed the button this many times:'),
+                        Text(
+                            '$_counterIncrement',
+                            style: Theme.of(context).textTheme.display1,
+                        ),
+                        Row(
                             children: <Widget>[
-                                Container(
-                                    margin: EdgeInsets.all(25),
-                                    child: Image(
-                                        image: AssetImage('assets/profil.jpg'),
-                                        width: 200,
-                                    ),
-                                ),
-                                Text(
-                                    'MUHAMMAD FAUZAN NOOR AZHAR',
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                ),
-                                Text(
-                                    'SOFTWARE ENGINEER',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.black
-                                    ),
-                                )
+                               Expanded(
+                                   child: RaisedButton(
+                                       onPressed: _incrementCounter,
+                                       child: Icon(Icons.add),
+                                   ),
+                               ),
+                               Expanded(
+                                   child: RaisedButton(
+                                       onPressed: _decrementCounter,
+                                       child: Icon(Icons.remove),
+                                   ),
+                               ),
                             ],
                         )
-                    ),
-                    Row()
-                ],
+                    ],
+                )
+            ),
+            floatingActionButton: FloatingActionButton(
+                onPressed: _incrementCounter,
+                tooltip: 'Increment',
+                child: Icon(Icons.add),
             ),
         );
     }
