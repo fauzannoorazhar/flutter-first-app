@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+    static const String _title = 'My Portofolio';
+    
+    // This widget is the root of your application.
 	@override
 	Widget build(BuildContext context) {
 	return MaterialApp(
 		//debugShowCheckedModeBanner: false,
-		title: 'Welcome To Flutter',
+		title: _title,
 			theme: ThemeData (
 				// This is the theme of your application.
 				//
@@ -24,13 +25,54 @@ class MyApp extends StatelessWidget {
                 primaryColor: Colors.white
 			),
 			home: Scaffold(
-                appBar: AppBar(
-                    title: Text('Test Title'),
-                ),
-                body: Center(
-                        child: Text('Hello Word'),
-                    ),
+                appBar: AppBar(title: const Text(_title)),
+                body: MyStatelessWidget(),
             ),
 		);
 	}
+}
+
+class MyStatelessWidget extends StatelessWidget {
+    MyStatelessWidget({Key key}) : super(key : key);
+
+    Widget build(BuildContext context) {
+        return Container(
+            child: Column(
+                children: <Widget>[
+                    Container(
+                        padding: EdgeInsets.all(10.0),
+                        color: Colors.greenAccent,
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                            children: <Widget>[
+                                Container(
+                                    margin: EdgeInsets.all(25),
+                                    child: Image(
+                                        image: AssetImage('assets/profil.jpg'),
+                                        width: 200,
+                                    ),
+                                ),
+                                Text(
+                                    'MUHAMMAD FAUZAN NOOR AZHAR',
+                                    style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                    'SOFTWARE ENGINEER',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black
+                                    ),
+                                )
+                            ],
+                        )
+                    ),
+                    Row()
+                ],
+            ),
+        );
+    }
 }
