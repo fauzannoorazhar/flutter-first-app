@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FloatingAppBar extends StatelessWidget {
+class FloatingAppBarPage extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
       return CustomScrollView(
